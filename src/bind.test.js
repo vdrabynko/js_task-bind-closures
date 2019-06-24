@@ -54,7 +54,7 @@ describe('Call bind without args', () => {
       .toStrictEqual([4, 5, 6]);
   });
 
-  test('should not change base and extra params', () => {
+  test('should not change extra params', () => {
     expect(argsExtra)
       .toStrictEqual([4, 5, 6]);
   });
