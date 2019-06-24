@@ -2,11 +2,6 @@
 
 const bind = require('./bind');
 
-test('add two numbers 1 + 2 = 3', () => {
-  expect(bind(1, 2))
-    .toBe(3);
-});
-
 describe('Basic scenario', () => {
   const f = (...args) => args;
   let device;
