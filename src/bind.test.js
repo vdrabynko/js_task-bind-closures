@@ -24,10 +24,3 @@ test('Should return empty array if bind takes callback only', () => {
   expect(device2())
     .toEqual([]);
 });
-
-test('Should not change base and extra params', () => {
-  expect(argsBase)
-    .toEqual([1, 2, 3]);
-  expect(argsExtra)
-    .toEqual([4, 5, 6]);
-});
