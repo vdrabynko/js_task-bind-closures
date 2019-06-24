@@ -2,55 +2,32 @@
 
 const bind = require('./bind');
 
-describe('Basic scenario', () => {
-  const f = (...args) => args;
-  let device;
-  const argsBase = [1, 2, 3];
-  const argsExtra = [4, 5, 6];
+const f = (...args) => args;
 
-  beforeEach(() => {
-    device = bind(f, ...argsBase);
-  });
+const argsBase = [1, 2, 3];
+const argsExtra = [4, 5, 6];
 
-  test('should return expected array', () => {
-    expect(device())
-      .toStrictEqual([1, 2, 3]);
-  });
+const device = bind(f, ...argsBase);
+const device2 = bind(f);
 
-  test('should return expected array', () => {
-    expect(device(...argsExtra))
-      .toStrictEqual([1, 2, 3, 4, 5, 6]);
-  });
-
-  test('should not change base and extra params', () => {
-    expect(argsBase)
-      .toStrictEqual([1, 2, 3]);
-    expect(argsExtra)
-      .toStrictEqual([4, 5, 6]);
-  });
+test('Should return expected array', () => {
+  expect(device())
+    .toEqual([1, 2, 3]);
 });
 
-describe('Call bind without args', () => {
-  const f = (...args) => args;
-  let device;
-  const argsExtra = [4, 5, 6];
+test('Should return expected array', () => {
+  expect(device(...argsExtra))
+    .toEqual([1, 2, 3, 4, 5, 6]);
+});
 
-  beforeEach(() => {
-    device = bind(f);
-  });
+test('Should return empty array if bind takes callback only', () => {
+  expect(device2())
+    .toEqual([]);
+});
 
-  test('should return expected array', () => {
-    expect(device())
-      .toStrictEqual([]);
-  });
-
-  test('should return expected array', () => {
-    expect(device(...argsExtra))
-      .toStrictEqual([4, 5, 6]);
-  });
-
-  test('should not change extra params', () => {
-    expect(argsExtra)
-      .toStrictEqual([4, 5, 6]);
-  });
+test('Should not change base and extra params', () => {
+  expect(argsBase)
+    .toEqual([1, 2, 3]);
+  expect(argsExtra)
+    .toEqual([4, 5, 6]);
 });
